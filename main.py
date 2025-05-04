@@ -6,12 +6,13 @@ from app.handlers import router
 
 load_dotenv(".env")
 
+
 async def main():
+    global bot
     bot = Bot(token = '7723499886:AAG2CLb2M91uw8OtwrVazI5d9tC2XM2SKqM')
     dp = Dispatcher()
     dp.include_router(router)
     await dp.start_polling(bot)
-    
 
 
 if __name__ == '__main__':
