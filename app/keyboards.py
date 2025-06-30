@@ -2,11 +2,16 @@ from aiogram.types import (ReplyKeyboardMarkup, KeyboardButton,
                            InlineKeyboardMarkup, InlineKeyboardButton)
 
 
-main = ReplyKeyboardMarkup(keyboard=[
+main_registred = ReplyKeyboardMarkup(keyboard=[
+    [KeyboardButton(text='Помощь', callback_data='help')],
+    [KeyboardButton(text='Мои курсы', callback_data='courses')]],
+    resize_keyboard=True) # input_field_placeholder='reply buttons'
+
+main_unregistred = ReplyKeyboardMarkup(keyboard=[
     [KeyboardButton(text='Регистрация', callback_data='registration'),
-    KeyboardButton(text='Информация', callback_data='help')]],
-    resize_keyboard=True,
-    input_field_placeholder='reply buttons')
+    KeyboardButton(text='Помощь', callback_data='help')],
+    [KeyboardButton(text='Мои курсы', callback_data='courses')]],
+    resize_keyboard=True) # input_field_placeholder='reply buttons'
 
 
 catalog = InlineKeyboardMarkup(inline_keyboard=[

@@ -1,22 +1,30 @@
 import asyncio, os
-from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, F
+from dotenv import load_dotenv
 
+from app.logger import log_info
 from app.handlers import router
 
 load_dotenv(".env")
 
 
 async def main():
+    log_info('Starting bot initialization')
     global bot
-    bot = Bot(token = '7723499886:AAG2CLb2M91uw8OtwrVazI5d9tC2XM2SKqM')
+    bot = Bot(token = os.getenv('BOT_TOKEN'))
     dp = Dispatcher()
     dp.include_router(router)
-    await dp.start_polling(bot)
+
+    log_info('Bot initialized successfully')
+            #  , 
+            #     bot_id=bot.id, 
+            #     bot_name=(await bot.get_me()).username)
+    await dp.start_polling(bot) # skip_updates=True
 
 
 if __name__ == '__main__':
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
+        log_info('Bot is turned off') # 'MAIN',
         print('Bot is turned off')
